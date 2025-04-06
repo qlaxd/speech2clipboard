@@ -3,7 +3,7 @@
 A Python application that transcribes Hungarian speech to text and automatically copies it to the clipboard.
 
 ## Features
-
+- Privacy focused: it uses your own GPU for speech recognition - data doesn't leave your hardware
 - Record Hungarian speech through your microphone
 - Transcribe speech to text using Wav2Vec2 model optimized for Hungarian language
 - Automatically copy transcription to clipboard
