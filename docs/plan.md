@@ -12,7 +12,7 @@ A Python application that transcribes Hungarian speech to text and automatically
   - [x] Set up development environment
 - [x] Configure project structure
   - [x] Create src/ directory for application code
-  - [ ] Create tests/ directory for unit and integration tests
+  - [x] Create tests/ directory for unit and integration tests
   - [x] Create docs/ directory for documentation
 - [ ] Set up CI/CD pipeline
   - [ ] Configure GitHub Actions or similar for automated testing
