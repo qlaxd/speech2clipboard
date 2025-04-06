@@ -1,13 +1,13 @@
 import torch
 import librosa
 import numpy as np
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor, Wav2Vec2CTCTokenizer, Wav2Vec2FeatureExtractor
 
 class SpeechRecognizer:
-    def __init__(self, model_name="SZTAKI-HLT/hubert-base-cc"):
+    def __init__(self, model_name="jonatasgrosman/wav2vec2-large-xlsr-53-hungarian"):
         """
         Initialize the speech recognizer with a Hungarian speech model.
-        Default model: SZTAKI-HLT/hubert-base-cc - A Hungarian fine-tuned Wav2Vec2 model
+        Default model: jonatasgrosman/wav2vec2-large-xlsr-53-hungarian - A Hungarian fine-tuned Wav2Vec2 model
         """
         self.sampling_rate = 16000  # Required sampling rate for the model
         self.processor = None
@@ -20,7 +20,22 @@ class SpeechRecognizer:
     def load_model(self, model_name):
         """Load the Wav2Vec2 model and processor"""
         try:
-            self.processor = Wav2Vec2Processor.from_pretrained(model_name)
+            # Try loading with the standard processor first
+            try:
+                self.processor = Wav2Vec2Processor.from_pretrained(model_name)
+            except Exception as e:
+                print(f"Failed to load processor directly: {e}")
+                # Manual fallback to load tokenizer and feature extractor separately
+                tokenizer = Wav2Vec2CTCTokenizer.from_pretrained(model_name)
+                feature_extractor = Wav2Vec2FeatureExtractor.from_pretrained(
+                    model_name,
+                    sampling_rate=self.sampling_rate,
+                    padding_value=0.0,
+                    do_normalize=True,
+                    return_attention_mask=True
+                )
+                self.processor = Wav2Vec2Processor(feature_extractor=feature_extractor, tokenizer=tokenizer)
+                
             self.model = Wav2Vec2ForCTC.from_pretrained(model_name).to(self.device)
             print("Model loaded successfully")
         except Exception as e:

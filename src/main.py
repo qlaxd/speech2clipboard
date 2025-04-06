@@ -8,10 +8,10 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt
 
 # Import custom modules
-from speech_recognition import SpeechRecognizer
-from audio_recorder import AudioRecorder
-from clipboard_manager import ClipboardManager
-from ui.main_window import MainWindow
+from .speech_recognition import SpeechRecognizer
+from .audio_recorder import AudioRecorder
+from .clipboard_manager import ClipboardManager
+from .ui.main_window import MainWindow
 
 class SpeechProcessThread(QThread):
     """Thread for processing speech in the background"""
@@ -133,4 +133,9 @@ class SpeechToClipboardApp:
 if __name__ == "__main__":
     # Create and run the application
     app = SpeechToClipboardApp()
-    sys.exit(app.run()) 
+    sys.exit(app.run())
+
+def main():
+    """Entry point for the application"""
+    app = SpeechToClipboardApp()
+    return app.run() 

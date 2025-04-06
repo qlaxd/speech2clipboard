@@ -1,4 +1,3 @@
-import pyperclip
 import sys
 import subprocess
 import os
@@ -22,8 +21,9 @@ class ClipboardManager:
         """
         try:
             # Try the pyperclip library first (cross-platform)
-            pyperclip.copy(text)
-            return True
+            # pyperclip.copy(text)
+            # return True
+            raise Exception("Skipping pyperclip")
         except Exception as e:
             print(f"Pyperclip error: {e}")
             
@@ -94,7 +94,8 @@ class ClipboardManager:
             str: Text from clipboard or empty string if failed
         """
         try:
-            return pyperclip.paste()
+            #return pyperclip.paste()
+            raise Exception("Skipping pyperclip")
         except Exception as e:
             print(f"Error getting clipboard content: {e}")
             
