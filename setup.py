@@ -29,6 +29,7 @@ setup(
         "librosa>=0.9.2",
         "python-dotenv>=0.21.0",
         "scipy>=1.9.0",
+        "accelerate>=0.20.0",
     ],
     entry_points={
         "console_scripts": [
