@@ -1,0 +1,1 @@
+# Tests for the Hungarian Speech to Clipboard package 

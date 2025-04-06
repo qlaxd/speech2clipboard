@@ -1,0 +1,1 @@
+# UI package for Hungarian Speech to Clipboard 
