@@ -9,7 +9,7 @@ class SpeechRecognizer:
         Initialize the speech recognizer with a Hungarian speech model.
         Default model: jonatasgrosman/wav2vec2-large-xlsr-53-hungarian - A Hungarian fine-tuned Wav2Vec2 model
         """
-        self.sampling_rate = 16000  # Required sampling rate for the model
+        self.sampling_rate = 16000  # Required sampling rate for the model (kHz)
         self.processor = None
         self.model = None
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
