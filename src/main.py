@@ -5,13 +5,13 @@ import os
 import threading
 import numpy as np
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt
+from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt, QObject
 
 # Import custom modules
-from .speech_recognition import SpeechRecognizer
-from .audio_recorder import AudioRecorder
-from .clipboard_manager import ClipboardManager
-from .ui.main_window import MainWindow
+from speech_recognition import SpeechRecognizer
+from audio_recorder import AudioRecorder
+from clipboard_manager import ClipboardManager
+from ui.main_window import MainWindow
 
 class SpeechProcessThread(QThread):
     """Thread for processing speech in the background"""
@@ -44,11 +44,12 @@ class SpeechProcessThread(QThread):
             self.transcription_ready.emit("")
 
 
-class SpeechToClipboardApp:
+class SpeechToClipboardApp(QObject):
     """Main application class"""
     
     def __init__(self):
         """Initialize the application"""
+        super().__init__() # Call QObject initializer
         # Create Qt application
         self.app = QApplication(sys.argv)
         
