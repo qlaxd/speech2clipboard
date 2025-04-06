@@ -11,15 +11,19 @@ A Python application that transcribes Hungarian speech to text and automatically
 
 ## Setup
 
-1. Clone this repository
-2. Install the dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-3. Run the application:
-   ```
-   python src/main.py
-   ```
+For detailed installation instructions, please see the [Installation Guide](docs/installation.md).
+
+Quick installation:
+
+```bash
+# For system-wide installation (recommended)
+pipx install .
+
+# For development in a virtual environment
+python -m venv .venv
+source .venv/bin/activate  # Linux/macOS
+pip install -e .
+```
 
 ## Requirements
 
