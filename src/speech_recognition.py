@@ -44,16 +44,9 @@ class SpeechRecognizer:
     
     def preprocess_audio(self, audio_array):
         """Preprocess the audio to match model requirements"""
-        # Resample if necessary
-        if librosa.get_samplerate(audio_array) != self.sampling_rate:
-            audio_array = librosa.resample(
-                audio_array, 
-                orig_sr=librosa.get_samplerate(audio_array), 
-                target_sr=self.sampling_rate
-            )
         
         # Normalize the audio
-        audio_array = audio_array / np.max(np.abs(audio_array))
+        audio_array = audio_array / np.max(np.abs(audio_array)) if np.max(np.abs(audio_array)) > 0 else audio_array
         
         return audio_array
     
@@ -68,6 +61,10 @@ class SpeechRecognizer:
             transcription: String of transcribed text
         """
         try:
+            # Ensure audio is properly shaped (flatten if multi-dimensional)
+            if audio_array.ndim > 1:
+                audio_array = audio_array.flatten()
+                
             # Preprocess the audio
             audio_array = self.preprocess_audio(audio_array)
             
