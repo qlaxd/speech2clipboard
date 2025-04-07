@@ -27,7 +27,7 @@ pip install -e .
 
 ## Requirements
 
-- Python 3.8 or higher
+- Python 3.13.2 or higher
 - Microphone for audio input
 - Internet connection for initial model download
 
