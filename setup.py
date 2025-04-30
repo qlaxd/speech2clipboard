@@ -11,7 +11,7 @@ setup(
     description="A tool to transcribe Hungarian speech to text and copy it to the clipboard",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/speech2clipboard",
+    url="https://github.com/qla0000/speech2clipboard",
     packages=["src", "src.ui"],
     classifiers=[
         "Programming Language :: Python :: 3",
